@@ -6,9 +6,10 @@ export async function runCrew(userGoal, pdfFile,userID) {
   const formData = new FormData()
   formData.append('user_goal', userGoal)
 
-  console.log('PDF uploaded',pdfFile)
-  formData.append('pdf_file', pdfFile)
-
+  if(pdfFile){
+    console.log('PDF uploaded',pdfFile)
+    formData.append('pdf_file', pdfFile)
+  }
   formData.append('user_id',userID)
 
   const response = await axios.post(`${API_BASE}/run_crew`, formData, {
